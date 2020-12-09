@@ -11,19 +11,4 @@ function App() {
   );
 }
 
-const accounts = [
-  {
-    "login": "someWan",
-    "id": 1
-  },
-  {
-    "login": "anotherWan",
-    "id": 2
-  },
-  {
-    "login": "dozgr95",
-    "id": 3
-  },
-]
-
 export default App;
