@@ -3,12 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
-
 export default function AsyncAutoComplete(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -63,7 +57,7 @@ export default function AsyncAutoComplete(props) {
   } 
   
   const keyPressed = (event) => {
-    if(event.key == 'Enter' && searchValue){
+    if(event.key === 'Enter' && searchValue){
         window.open('https://github.com/'+searchValue, '_blank', 'noopener,noreferrer')
      }
   }
