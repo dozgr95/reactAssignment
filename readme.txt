@@ -12,7 +12,7 @@ Was magst du nicht an deiner Lösung?
 Wenn du noch mehr Zeit hättest, was würdest du verbessern?
  - Styling allgemein z.B. avatare usw. 
  - Eventhandling z.B beim tab öffnen wird der input gelöscht (vorschläge geleert)
- - Code qualität (Komponenten, Namensgebung, etc)
+ - Code qualität (Komponenten, Namensgebung, Unit-tests, etc)
 
 Wenn du nochmals komplett von vorne beginnen könntest, was würdest du anders machen?
  - ich habe relativ spontant entschieden material-ui zu nutzen, da ich es schon ein wenig kannte (von vuetify). Von daher würde ich Alternativen (auch Eigenimplementation) überdenken.
