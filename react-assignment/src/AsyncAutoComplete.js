@@ -22,12 +22,32 @@ export default function AsyncAutoComplete(props) {
     }
 
     (async () => {
-      const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
-      await sleep(1e3); // For demo purposes.
-      const countries = await response.json();
+    // const sample = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
+    // await sleep(1e3); // For demo purposes.
+    // const countries = await sample.json();
+    // console.log(countries);
+
+      const response =  {
+            accounts:[
+                {
+                login: "someWan",
+                id: 1
+                },
+                {
+                login: "anotherWan",
+                id: 2
+                },
+                {
+                login: "dozgr95",
+                id: 3
+                },
+            ]
+        }
+      // await fetch('https://api.github.com/search/users/');
+      sleep(1);
 
       if (active) {
-        setOptions(Object.keys(countries).map((key) => countries[key].item[0]));
+        setOptions(Object.keys(response.accounts).map((key) => response.accounts[key]));
       }
     })();
 
@@ -42,6 +62,12 @@ export default function AsyncAutoComplete(props) {
     }
   }, [open]);
 
+  const selectOptionAction = (event, value) => {
+      if(value) {
+         window.open('https://github.com/'+value.login, '_blank', 'noopener,noreferrer')
+      }
+  }
+    
   return (
     <Autocomplete
       id="asynchronous-demo"
@@ -53,10 +79,11 @@ export default function AsyncAutoComplete(props) {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) => option.name === value.name}
-      getOptionLabel={(option) => option.name}
+      getOptionSelected={(option, value) => option.login === value.login}
+      getOptionLabel={(option) => option.login}
       options={options}
       loading={loading}
+      onChange={selectOptionAction}
       renderInput={(params) => (
         <TextField
           {...params}
