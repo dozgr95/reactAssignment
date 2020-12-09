@@ -1,7 +1,10 @@
 ToDo:
+ - sample app grobem layout
  - input field
+  - marterial autocomplete with dummy content 	
  - api client: https://api.github.com/search/users
- - 
+  - input an api schicken
+  - antwort 
 
 
 
