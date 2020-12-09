@@ -4,7 +4,8 @@ ToDo:
   - marterial autocomplete with dummy content 	
  - api client: https://api.github.com/search/users
   - input an api schicken
-  - antwort 
+  - antwort in liste darstellen
+  - 
 
 
 
@@ -14,7 +15,7 @@ Was mag ich an meiner Lösung?
 
 
 Was magst du nicht an deiner Lösung?
- 
+ nicht wirklich ahnung von react
 
 Wenn du noch mehr Zeit hättest, was würdest du verbessern?
  - Styling allg.
