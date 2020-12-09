@@ -12,60 +12,60 @@ function sleep(delay = 0) {
 export default function AsyncAutoComplete(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
-  const loading = open && options.length === 0;
+  const [searchValue, setSearchValue] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    let active = true;
+   React.useEffect(() => {
+    if(searchValue) {
+        let active = true;
 
-    if (!loading) {
-      return undefined;
-    }
+        if(searchValue !== '') {
+            setLoading(true);
+            (async () => {
+            const query = '?q='+searchValue+' in:user'+
+                '&access_token=c07e5fe534142fb0de89581ee82bc0ad89587433&'
+                //  +
+                // 'per_page=100&'+
+                // 'page=1'
+            const response = await fetch('https://api.github.com/search/users'+query, {
+                method: 'GET'
+                // headersaccept: 'application/vnd.github.v3+json',
+            });
+            console.log(response)
+            const accounts = await response.json();
+            console.log(accounts)
 
-    (async () => {
-    // const sample = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
-    // await sleep(1e3); // For demo purposes.
-    // const countries = await sample.json();
-    // console.log(countries);
+            if (active) {
+                setOptions(accounts.items) // array
+                }
+            })();
+            setLoading(false);    
+            return () => {
+                active = false;
+            };
 
-      const response =  {
-            accounts:[
-                {
-                login: "someWan",
-                id: 1
-                },
-                {
-                login: "anotherWan",
-                id: 2
-                },
-                {
-                login: "dozgr95",
-                id: 3
-                },
-            ]
         }
-      // await fetch('https://api.github.com/search/users/');
-      sleep(1);
-
-      if (active) {
-        setOptions(Object.keys(response.accounts).map((key) => response.accounts[key]));
-      }
-    })();
-
-    return () => {
-      active = false;
-    };
-  }, [loading]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
     }
-  }, [open]);
+  }, [searchValue]);
 
   const selectOptionAction = (event, value) => {
       if(value) {
          window.open('https://github.com/'+value.login, '_blank', 'noopener,noreferrer')
       }
+  }
+
+  const searchValueChanged = (event) => {
+    if(event.target.value === '') {
+        setOptions([])
+    }
+    console.log('value changed', event.target.value)
+    setSearchValue(event.target.value)
+  } 
+  
+  const keyPressed = (event) => {
+    if(event.key == 'Enter' && searchValue){
+        window.open('https://github.com/'+searchValue, '_blank', 'noopener,noreferrer')
+     }
   }
     
   return (
@@ -87,8 +87,10 @@ export default function AsyncAutoComplete(props) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Asynchronous"
+          label="Github benutzer"
           variant="outlined"
+          onChange={searchValueChanged}
+          onKeyDown={keyPressed}
           InputProps={{
             ...params.InputProps,
             endAdornment: (
