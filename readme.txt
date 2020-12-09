@@ -12,11 +12,12 @@ Was magst du nicht an deiner Lösung?
 Wenn du noch mehr Zeit hättest, was würdest du verbessern?
  - Styling allgemein z.B. avatare usw. 
  - Eventhandling z.B beim tab öffnen wird der input gelöscht (vorschläge geleert)
+ - Code qualität (Komponenten, Namensgebung, etc)
 
 Wenn du nochmals komplett von vorne beginnen könntest, was würdest du anders machen?
  - ich habe relativ spontant entschieden material-ui zu nutzen, da ich es schon ein wenig kannte (von vuetify). Von daher würde ich Alternativen (auch Eigenimplementation) überdenken.
  - Ich würde wohl ein mächtigeren/schöneren API-Client anstatt fetch verwenden, da ich den get query string zusammen stellen mühsam fand. 
-
+ - ich würde mich am anfang noch ein wenig mehr über react informieren. Ich denke da gibt es sinnvolle methoden z.B. um den API call nicht so in der Komponente
 
 --------------------------
 ToDo:
